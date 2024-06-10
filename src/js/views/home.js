@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { useActionData } from "react-router";
+import { Link } from "react-router-dom";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
+export const Home = () => {
+	useEffect(()=> {
+		actions.getCharacters()
+
+	}, [])
+
+	return{
+		<div>{store.characterDetails.map((item, index)=>{
+			return(
+				<Link to={`/single/${item.id}`}>
+					<li>
+						<ul>{item.name}</ul>
+					</li>
+				</Link>
+			)
+		}</div>
+	}
+
+};
+	
 );
